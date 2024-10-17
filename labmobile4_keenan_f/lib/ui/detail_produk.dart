@@ -1,8 +1,12 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:labmobile4_keenan_f/bloc/produk_bloc.dart';
 import 'package:labmobile4_keenan_f/model/produk.dart';
 import 'package:labmobile4_keenan_f/ui/produk_form.dart';
+import 'package:labmobile4_keenan_f/ui/produk_page.dart';
+import 'package:labmobile4_keenan_f/widget/warning_dialog.dart';
 
+// ignore: must_be_immutable
 class ProdukDetail extends StatefulWidget {
   Produk? produk;
   ProdukDetail({Key? key, this.produk}) : super(key: key);
@@ -15,7 +19,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Produk Keenan'),
+        title: const Text('Detail Produk'),
       ),
       body: Center(
         child: Column(
@@ -74,17 +78,17 @@ class _ProdukDetailState extends State<ProdukDetail> {
         OutlinedButton(
           child: const Text("Ya"),
           onPressed: () {
-            // ProdukBloc.deleteProduk(id: int.parse(widget.produk!.id!)).then(
-            //     (value) => {
-            //           Navigator.of(context).push(MaterialPageRoute(
-            //               builder: (context) => const ProdukPage()))
-            //         }, onError: (error) {
-            //   showDialog(
-            //       context: context,
-            //       builder: (BuildContext context) => const WarningDialog(
-            //             description: "Hapus gagal, silahkan coba lagi",
-            //           ));
-            // });
+            ProdukBloc.deleteProduk(id: int.parse(widget.produk!.id!)).then(
+                (value) => {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ProdukPage()))
+                    }, onError: (error) {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) => const WarningDialog(
+                        description: "Hapus gagal, silahkan coba lagi",
+                      ));
+            });
           },
         ),
 //tombol batal
