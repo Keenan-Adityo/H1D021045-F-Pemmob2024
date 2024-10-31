@@ -1,0 +1,7 @@
+{
+  "name": "LabMobile6_Keenan_F",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
